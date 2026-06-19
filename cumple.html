@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz cumpleaños, Mamá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Caveat:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --crema: #FAF3E6;
+  --crema-2: #F1E6D2;
+  --papel-sombra: #E4D3B4;
+  --tinta: #2E2620;
+  --tinta-suave: #5B4E40;
+  --terracota: #C2714F;
+  --oliva: #4A5240;
+  --dorado: #C29A4C;
+  --hilo: #B6492E;
+
+  --serif: 'Fraunces', serif;
+  --sans: 'Inter', sans-serif;
+  --mano: 'Caveat', cursive;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  background:var(--crema);
+  color:var(--tinta);
+  font-family:var(--sans);
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(194,113,79,0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(74,82,64,0.05), transparent 45%);
+}
+
+/* textura de papel sutil */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:1;
+  opacity:0.5;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 2px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.012) 0px, transparent 1px, transparent 2px);
+}
+
+::selection{ background:var(--dorado); color:var(--crema); }
+
+a{ color:inherit; }
+
+/* ============ SCROLLBAR (estética) ============ */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:var(--crema-2); }
+::-webkit-scrollbar-thumb{ background:var(--terracota); border-radius:6px; }
+
+/* ============ UTILIDADES ============ */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:0.72rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--terracota);
+  font-weight:600;
+}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:6vh 6vw;
+  overflow:hidden;
+}
+
+.hero-marco{
+  position:relative;
+  z-index:2;
+}
+
+.hero .eyebrow{ display:block; margin-bottom:1.4rem; }
+
+.hero h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-style:italic;
+  font-size:clamp(2.6rem, 9vw, 6.2rem);
+  line-height:0.98;
+  letter-spacing:-0.01em;
+  color:var(--tinta);
+}
+
+.hero h1 .linea2{
+  display:block;
+  font-style:normal;
+  font-weight:300;
+  color:var(--terracota);
+  font-size:clamp(1.6rem, 5vw, 3.2rem);
+  margin-top:0.3rem;
+}
+
+.hero p.sub{
+  margin-top:1.6rem;
+  font-family:var(--mano);
+  font-size:clamp(1.3rem, 3vw, 1.8rem);
+  color:var(--tinta-suave);
+  max-width:32ch;
+}
+
+.hero-scrollhint{
+  margin-top:4rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.5rem;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--tinta-suave);
+  opacity:0.7;
+}
+.hero-scrollhint .linea{
+  width:1px; height:40px;
+  background:linear-gradient(to bottom, var(--terracota), transparent);
+  animation: bajar 1.8s ease-in-out infinite;
+}
+@keyframes bajar{
+  0%{ transform:scaleY(0.3); opacity:0.3; transform-origin:top; }
+  50%{ transform:scaleY(1); opacity:1; }
+  100%{ transform:scaleY(0.3); opacity:0.3; transform-origin:bottom; }
+}
+
+/* manchas decorativas tipo acuarela detrás del hero */
+.hero-blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px);
+  z-index:1;
+  opacity:0.5;
+}
+.hero-blob.b1{ width:340px; height:340px; background:var(--terracota); top:-80px; left:-100px; opacity:0.18; }
+.hero-blob.b2{ width:280px; height:280px; background:var(--oliva); bottom:-60px; right:-80px; opacity:0.14; }
+
+/* mariposa / flor decorativa simple en css */
+.flor{
+  position:absolute;
+  width:18px; height:18px;
+  opacity:0.55;
+}
+
+/* ============ INTRO TEXTO (sección puente) ============ */
+.intro{
+  max-width:680px;
+  margin:0 auto;
+  padding:14vh 6vw 10vh;
+  text-align:center;
+}
+.intro p{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(1.3rem, 3vw, 1.9rem);
+  line-height:1.5;
+  color:var(--tinta-suave);
+}
+.intro p strong{
+  font-style:normal;
+  color:var(--terracota);
+  font-weight:600;
+}
+
+/* ============ ALBUM ============ */
+.album{
+  position:relative;
+  padding:4vh 6vw 16vh;
+}
+
+.album-header{
+  text-align:center;
+  margin-bottom:8vh;
+}
+.album-header h2{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(2rem, 5vw, 3.2rem);
+  margin-top:0.6rem;
+}
+
+.album-grid{
+  display:flex;
+  flex-direction:column;
+  gap:14vh;
+  max-width:980px;
+  margin:0 auto;
+}
+
+/* cada entrada del album: foto + texto alternando lados */
+.foto-entrada{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:4vw;
+}
+.foto-entrada:nth-child(even){
+  direction:rtl;
+}
+.foto-entrada:nth-child(even) .foto-texto{
+  direction:ltr;
+}
+
+.foto-marco-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+/* polaroid */
+.polaroid{
+  background:#FFFDF9;
+  padding:14px 14px 36px 14px;
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.05),
+    0 10px 24px -8px rgba(46,38,32,0.28),
+    0 2px 4px rgba(46,38,32,0.12);
+  width:min(360px, 80vw);
+  position:relative;
+  will-change:transform, opacity;
+  opacity:0;
+  transform:translateY(60px) rotate(var(--rot,-4deg)) scale(0.92);
+  transition:opacity 0.9s cubic-bezier(.2,.7,.3,1), transform 0.9s cubic-bezier(.2,.7,.3,1);
+}
+.polaroid.visible{
+  opacity:1;
+  transform:translateY(0) rotate(var(--rot,-4deg)) scale(1);
+}
+.polaroid .foto{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  background:var(--papel-sombra);
+  filter:sepia(8%) saturate(1.02);
+}
+.polaroid .caption{
+  font-family:var(--mano);
+  font-size:1.25rem;
+  color:var(--tinta-suave);
+  position:absolute;
+  bottom:6px; left:0; right:0;
+  text-align:center;
+}
+
+/* cinta adhesiva */
+.cinta{
+  position:absolute;
+  width:90px; height:34px;
+  background:rgba(194,113,79,0.55);
+  top:-16px;
+  left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
+.cinta::before{
+  content:"";
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 2px, transparent 2px 6px);
+}
+.polaroid.cinta-izq .cinta{ left:14%; transform:translateX(-50%) rotate(-8deg); }
+.polaroid.cinta-der .cinta{ left:86%; transform:translateX(-50%) rotate(8deg); }
+
+.foto-texto{
+  text-align:left;
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+  transition-delay:0.15s;
+}
+.foto-texto.visible{ opacity:1; transform:translateY(0); }
+
+.foto-texto .num{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:0.95rem;
+  color:var(--dorado);
+  display:block;
+  margin-bottom:0.5rem;
+  letter-spacing:0.05em;
+}
+.foto-texto h3{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+  margin-bottom:0.6rem;
+  color:var(--tinta);
+}
+.foto-texto p{
+  font-size:1rem;
+  line-height:1.65;
+  color:var(--tinta-suave);
+  max-width:36ch;
+}
+
+@media (max-width:760px){
+  .foto-entrada, .foto-entrada:nth-child(even){
+    direction:ltr;
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .foto-texto{ text-align:center; }
+  .foto-texto p{ margin:0 auto; }
+}
+
+/* ============ CARTA FINAL ============ */
+.carta-section{
+  padding:12vh 6vw 8vh;
+  display:flex;
+  justify-content:center;
+}
+
+.carta{
+  max-width:620px;
+  background:#FFFCF6;
+  padding:clamp(2.4rem, 6vw, 4rem);
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.04),
+    0 24px 48px -20px rgba(46,38,32,0.35);
+  position:relative;
+  transform:rotate(-0.6deg);
+  border:1px solid rgba(46,38,32,0.06);
+}
+.carta::before{
+  content:"";
+  position:absolute;
+  top:0; left:40px; right:40px; height:6px;
+  background:repeating-linear-gradient(90deg, var(--terracota) 0 16px, transparent 16px 32px);
+  opacity:0.5;
+}
+.carta .eyebrow{ display:block; text-align:center; margin-bottom:1rem; }
+.carta h2{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(1.8rem, 4vw, 2.6rem);
+  text-align:center;
+  margin-bottom:2rem;
+  color:var(--tinta);
+}
+.carta p{
+  font-family:var(--serif);
+  font-size:clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height:1.85;
+  color:var(--tinta-suave);
+  margin-bottom:1.3rem;
+}
+.carta .firma{
+  font-family:var(--mano);
+  font-size:2.1rem;
+  color:var(--terracota);
+  text-align:right;
+  margin-top:2rem;
+}
+
+/* ============ FOOTER / VELA ============ */
+.footer-final{
+  text-align:center;
+  padding:10vh 6vw 14vh;
+}
+.vela-wrap{
+  display:flex;
+  justify-content:center;
+  margin-bottom:1.4rem;
+}
+.vela{
+  width:14px; height:46px;
+  background:linear-gradient(to bottom, var(--dorado), var(--terracota));
+  border-radius:3px;
+  position:relative;
+}
+.llama{
+  width:12px; height:20px;
+  background:radial-gradient(circle at 50% 70%, #FFE9A8, var(--dorado) 60%, var(--terracota) 100%);
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  position:absolute;
+  top:-16px; left:1px;
+  filter:blur(0.3px);
+  animation: parpadeo 2.4s ease-in-out infinite;
+  transform-origin:bottom center;
+}
+@keyframes parpadeo{
+  0%, 100%{ transform:scaleY(1) rotate(-1deg); opacity:1; }
+  50%{ transform:scaleY(1.12) rotate(2deg); opacity:0.9; }
+}
+.footer-final h2{
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(1.8rem, 4.5vw, 2.6rem);
+  margin-bottom:0.6rem;
+}
+.footer-final p{
+  font-family:var(--mano);
+  font-size:1.3rem;
+  color:var(--tinta-suave);
+}
+
+/* ============ ACCESIBILIDAD: reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+  .polaroid, .foto-texto, .mini-polaroid{ opacity:1 !important; transform:none !important; }
+}
+
+/* focus visible */
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--terracota);
+  outline-offset:3px;
+}
+</style>
+</head>
+<body>
+<!--
+  CÓMO REEMPLAZAR LAS FOTOS:
+  1. Crea una carpeta llamada "photos" junto a este archivo index.html
+  2. Pon ahí tus fotos con estos nombres exactos:
+     foto-01.jpg, foto-02.jpg ... foto-20.jpg
+  3. Si usas otro formato (.png, .jpeg) cambia la extensión en cada
+     etiqueta <img src="photos/foto-01.jpg" ...> de este archivo.
+  4. Mientras no exista una foto, se muestra un recuadro con su nombre
+     de archivo para que sepas cuál falta.
+-->
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-marco">
+    <span class="eyebrow">Un álbum para ti</span>
+    <h1>Feliz Cumpleaños
+      <span class="linea2">Mamá</span>
+    </h1>
+    <p class="sub">cada foto de esta página guarda un pedacito de nosotros</p>
+  </div>
+  <div class="hero-scrollhint">
+    <span>desliza</span>
+    <span class="linea"></span>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <p>Antes de empezar a pasar las páginas de este álbum, quiero decirte algo simple: <strong>gracias por cada momento</strong> que guardamos en estas fotos, y por todos los que todavía no hemos tomado.</p>
+</section>
+
+<!-- ============ ALBUM ============ -->
+<section class="album">
+  <div class="album-header">
+    <span class="eyebrow">Capítulo uno</span>
+    <h2>Nuestro álbum de recuerdos</h2>
+  </div>
+
+  <div class="album-grid">
+
+    <!-- FOTO 01 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-5deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-01.jpg" alt="Reemplaza esta imagen: foto-01.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-01.jpg</text></svg>'">
+          <span class="caption">primeros días</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">01</span>
+        <h3>El comienzo de todo</h3>
+        <p>La primera vez que el mundo nos vio juntos. Tú ya sabías que esto sería para siempre.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 02 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-izq" style="--rot:4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-02.jpg" alt="Reemplaza esta imagen: foto-02.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-02.jpg</text></svg>'">
+          <span class="caption">tres generaciones</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">02</span>
+        <h3>En brazos de la familia</h3>
+        <p>Entre tus brazos y los del Tata, crecí rodeado de manos que siempre me sostuvieron.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 03 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-03.jpg" alt="Reemplaza esta imagen: foto-03.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-03.jpg</text></svg>'">
+          <span class="caption">bebé</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">03</span>
+        <h3>Esos ojos curiosos</h3>
+        <p>Dicen que ya desde bebé miraba el mundo con atención. Lo aprendí de ti.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 04 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-der" style="--rot:6deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-04.jpg" alt="Reemplaza esta imagen: foto-04.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-04.jpg</text></svg>'">
+          <span class="caption">Travesuras</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">04</span>
+        <h3>La felicidad</h3>
+        <p>Instantes de inocencia pura y felicidad junto a ti.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 05 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-05.jpg" alt="Reemplaza esta imagen: foto-05.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-05.jpg</text></svg>'">
+          <span class="caption">mis primeros cumpleaños</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">05</span>
+        <h3>De esas primeras velas</h3>
+        <p>Desde entonces no dejamos de celebrar juntos el regalo de vivir.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 06 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-izq" style="--rot:3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-06.jpg" alt="Reemplaza esta imagen: foto-06.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-06.jpg</text></svg>'">
+          <span class="caption">los años de crecer</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">06</span>
+        <h3>Pegados a la cámara</h3>
+        <p>Ya no era tan chico, pero seguía queriendo la foto justo a tu lado.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 07 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-6deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-07.jpg" alt="Reemplaza esta imagen: foto-07.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-07.jpg</text></svg>'">
+          <span class="caption">al aire libre</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">07</span>
+        <h3>Un día de sol contigo</h3>
+        <p>El cielo bien azul y tú a mi lado, como en cada salida que recuerdo.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 08 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-der" style="--rot:5deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-08.jpg" alt="Reemplaza esta imagen: foto-08.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-08.jpg</text></svg>'">
+          <span class="caption">en casa</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">08</span>
+        <h3>Un abrazo especial</h3>
+        <p>No hacía falta una fecha especial para abrazarnos así.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 09 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-09.jpg" alt="Reemplaza esta imagen: foto-09.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-09.jpg</text></svg>'">
+          <span class="caption">último día</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">09</span>
+        <h3>Los años de colegio</h3>
+        <p>Me acompañaste en cada etapa escolar, una foto a la vez.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 10 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-izq" style="--rot:4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-10.jpg" alt="Reemplaza esta imagen: foto-10.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-10.jpg</text></svg>'">
+          <span class="caption">en casa</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">10</span>
+        <h3>Las tardes tranquilas</h3>
+        <p>De las fotos simples, sin ocasión especial, que terminan siendo las más queridas.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 11 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-5deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-11.jpg" alt="Reemplaza esta imagen: foto-11.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-11.jpg</text></svg>'">
+          <span class="caption">afuera, juntos</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">11</span>
+        <h3>Un paseo cualquiera</h3>
+        <p>No recuerdo bien a dónde íbamos, pero sí que íbamos juntos.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 12 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-der" style="--rot:3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-12.jpg" alt="Reemplaza esta imagen: foto-12.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-12.jpg</text></svg>'">
+          <span class="caption">en el cerro</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">12</span>
+        <h3>Aventuras al aire libre</h3>
+        <p>El paisaje era bonito, pero lo mejor de la foto siempre eras tú.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 13 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-13.jpg" alt="Reemplaza esta imagen: foto-13.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-13.jpg</text></svg>'">
+          <span class="caption">tradición</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">13</span>
+        <h3>El huaso de la familia</h3>
+        <p>Hasta con sombrero de huaso, ahí estabas tú a mi lado, orgullosa.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 14 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-izq" style="--rot:6deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-14.jpg" alt="Reemplaza esta imagen: foto-14.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-14.jpg</text></svg>'">
+          <span class="caption">complicidad</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">14</span>
+        <h3>Nuestro estilo</h3>
+        <p>Audífonos al cuello y tu sonrisa cerca, mi combinación favorita.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 15 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-15.jpg" alt="Reemplaza esta imagen: foto-15.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-15.jpg</text></svg>'">
+          <span class="caption">en la playa</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">15</span>
+        <h3>Vacaciones en familia</h3>
+        <p>El sol, la arena, y la familia completa en una sola foto.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 16 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-der" style="--rot:5deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-16.jpg" alt="Reemplaza esta imagen: foto-16.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-16.jpg</text></svg>'">
+          <span class="caption">jugando con filtros</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">16</span>
+        <h3>Risas tontas</h3>
+        <p>De esas fotos que se toman sin razón, solo porque estábamos juntos y nos reíamos.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 17 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-6deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-17.jpg" alt="Reemplaza esta imagen: foto-17.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-17.jpg</text></svg>'">
+          <span class="caption">graduación</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">17</span>
+        <h3>El día del título</h3>
+        <p>Ese papel también es tuyo. Sin ti, ese logro no habría existido.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 18 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-izq" style="--rot:4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-18.jpg" alt="Reemplaza esta imagen: foto-18.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-18.jpg</text></svg>'">
+          <span class="caption">celebrando</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">18</span>
+        <h3>Una noche especial</h3>
+        <p>Entre luces y flores, celebrando contigo uno de los días más importantes.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 19 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid" style="--rot:-3deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-19.jpg" alt="Reemplaza esta imagen: foto-19.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-19.jpg</text></svg>'">
+          <span class="caption">en casa</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">19</span>
+        <h3>Celebrandote</h3>
+        <p>Como no hacerlo, si tú eres la razón de tantas sonrisas.</p>
+      </div>
+    </div>
+
+    <!-- FOTO 20 -->
+    <div class="foto-entrada">
+      <div class="foto-marco-wrap">
+        <div class="polaroid cinta-der" style="--rot:4deg" data-foto>
+          <div class="cinta"></div>
+          <img class="foto" src="photos/foto-20.jpeg" alt="Reemplaza esta imagen: foto-20.jpg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23E4D3B4%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2222%22 fill=%22%235B4E40%22 text-anchor=%22middle%22>foto-20.jpg</text></svg>'">
+          <span class="caption">hoy</span>
+        </div>
+      </div>
+      <div class="foto-texto">
+        <span class="num">20</span>
+        <h3>Y seguimos aquí</h3>
+        <p>Sumando fotos, sumando años, sumando razones para celebrarte cada vez más.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARTA FINAL ============ -->
+<section class="carta-section">
+  <div class="carta">
+    <span class="eyebrow">Para ti</span>
+    <h2>Una carta, Mamá</h2>
+    <p>Hoy quiero detenerme un momento, justo aquí, para decirte lo que muchas veces no alcanzo a poner en palabras en el día a día.</p>
+    <p>Gracias por cada una de las fotos que viste arriba, pero sobre todo por todo lo que no se ve en ninguna foto: las noches en vela, las conversaciones largas y en el momento exacto en que más las necesitaba, los consejos que entendí años después, y la paciencia que tienes conmigo incluso cuando no la merezco.</p>
+    <p>Eres la persona que sostiene esta familia sin pedir nada a cambio, y aunque a veces lo dije poco, todos los días estuve agradecido de tenerte.</p>
+    <p>Que este nuevo año te traiga la misma calma que tú me regalaste, que la paz de Dios abunde tu hermoso Corazón, y que cada vela que apagues hoy sea un recordatorio de cuánto te amo.</p>
+    <p>Feliz cumpleaños, mamá. Con todo mi cariño,</p>
+    <p class="firma"><!-- EDITA AQUÍ: tu nombre --> tu hijo Víctor</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER FINAL ============ -->
+<section class="footer-final">
+  <div class="vela-wrap">
+    <div class="vela"><div class="llama"></div></div>
+  </div>
+  <h2>Feliz cumpleaños, Mamá</h2>
+  <p>te queremos más de lo que cabe en cualquier álbum</p>
+</section>
+
+<script>
+// ============ SCROLL REVEAL con IntersectionObserver ============
+(function(){
+  const opciones = { threshold: 0.25 };
+
+  function activar(selector){
+    const elementos = document.querySelectorAll(selector);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, opciones);
+    elementos.forEach(el => observer.observe(el));
+  }
+
+  activar('[data-foto]');
+  activar('.foto-texto');
+})();
+</script>
+
+</body>
+</html>
